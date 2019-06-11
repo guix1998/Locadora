@@ -1,9 +1,11 @@
 package Locação;
 
+import Fichas.Alugar;
 import Fichas.Endereço;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.DefaultListModel;
 
 public class Locacao extends javax.swing.JFrame {
@@ -54,7 +56,7 @@ public class Locacao extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Classificação = new javax.swing.JLabel();
         Classificação1 = new javax.swing.JLabel();
-        txt_Nome = new javax.swing.JTextField();
+        txt_Cliente = new javax.swing.JTextField();
         txt_Ref = new javax.swing.JTextField();
         txt_Data = new com.toedter.calendar.JDateChooser();
         b_Voltar = new javax.swing.JButton();
@@ -67,7 +69,7 @@ public class Locacao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         l_Alugar = new javax.swing.JList<>();
         b_Add = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        b_Busca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,7 +99,7 @@ public class Locacao extends javax.swing.JFrame {
 
         Classificação1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Classificação1.setForeground(new java.awt.Color(255, 255, 255));
-        Classificação1.setText("Lançamento:");
+        Classificação1.setText("Data da Locação:");
 
         b_Voltar.setBackground(new java.awt.Color(0, 102, 153));
         b_Voltar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -151,38 +153,49 @@ public class Locacao extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 204));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Buscar");
+        b_Busca.setBackground(new java.awt.Color(0, 153, 204));
+        b_Busca.setForeground(new java.awt.Color(255, 255, 255));
+        b_Busca.setText("Buscar");
+        b_Busca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_BuscaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(Classificação))
-                            .addComponent(Classificação1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(b_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(b_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(b_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(205, 205, 205))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Classificação1)
+                                .addComponent(Classificação, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Data, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                            .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Nome))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addComponent(b_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(b_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(b_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(b_Busca))
+                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(160, 160, 160)
@@ -199,8 +212,8 @@ public class Locacao extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txt_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(txt_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b_Busca))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,12 +222,12 @@ public class Locacao extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Classificação1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b_Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,6 +275,48 @@ public class Locacao extends javax.swing.JFrame {
         dlm.remove(remover);
     }//GEN-LAST:event_b_AddActionPerformed
 
+    private void b_BuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_BuscaActionPerformed
+        Endereço en = new Endereço();
+        
+        String buscaNome = txt_Cliente.getText();
+        
+        // Le o arquivo
+        try{
+            File pastas = new File(en.getEnde()+"Clientes\\");
+                File[] files = pastas.listFiles();
+
+                for (int i = 0; i < files.length; i++) {
+                    File file = files[i];
+
+                    if (file.getPath().endsWith(".txt")) {  //PESQUISA O TXT DA MATRICULA
+                        String arq = file.getName();
+                        System.out.println(arq);
+                        
+                        if(arq == buscaNome){
+                        
+                            BufferedReader br = new BufferedReader(new FileReader(file));
+                            while(br.ready()){
+                                String linha = br.readLine();
+                                String[] palavra = linha.split(" - ");
+
+                                Alugar a = new Alugar();
+                                a.setNome(palavra[0]);
+                                a.setData(palavra[3]);
+
+                                System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT
+
+                                // Imprime confirmacao
+                                System.out.println("Feito =D");
+                            }
+                            br.close();
+                        }
+                    }
+                }
+            }catch(IOException e){
+            }
+
+    }//GEN-LAST:event_b_BuscaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,10 +356,10 @@ public class Locacao extends javax.swing.JFrame {
     private javax.swing.JLabel Classificação;
     private javax.swing.JLabel Classificação1;
     private javax.swing.JButton b_Add;
+    private javax.swing.JButton b_Busca;
     private javax.swing.JButton b_Concluuir;
     private javax.swing.JButton b_Limpar;
     private javax.swing.JButton b_Voltar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -314,8 +369,8 @@ public class Locacao extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JList<String> l_Alugar;
     private javax.swing.JList<String> l_FixaFilmes;
+    private javax.swing.JTextField txt_Cliente;
     private com.toedter.calendar.JDateChooser txt_Data;
-    private javax.swing.JTextField txt_Nome;
     private javax.swing.JTextField txt_Ref;
     // End of variables declaration//GEN-END:variables
 }

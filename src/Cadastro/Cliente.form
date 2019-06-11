@@ -102,15 +102,17 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txt_Data" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="txt_Nome" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txt_Cpf" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="txt_Data" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txt_Cpf" alignment="0" pref="121" max="32767" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txt_Fone" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txt_Nome" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -145,11 +147,11 @@
                               <Component id="txt_Fone" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_Data" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Classificação1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Classificação1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_Data" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txt_Endereço" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Classificação2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -212,8 +214,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Nome">
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="txt_Data">
         </Component>
         <Component class="javax.swing.JButton" name="b_Voltar">
           <Properties>
@@ -290,7 +290,7 @@
         <Component class="javax.swing.JButton" name="b_Editar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="cc" red="cc" type="rgb"/>
+              <Color blue="0" green="99" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -338,7 +338,7 @@
         <Component class="javax.swing.JFormattedTextField" name="txt_Fone">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="###-####" subtype="-1" type="5"/>
+              <Format format="(##) # ####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
@@ -404,6 +404,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txt_Cep">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="#####-###" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txt_Data">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

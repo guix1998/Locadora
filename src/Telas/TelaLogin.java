@@ -194,6 +194,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             String[] palavra = linha.split(" - ");
                             
                             u.setNome(palavra[0]);
+                                System.out.println(palavra[0]);
                             u.setFuncao(palavra[4]);
                             u.setLogin(palavra[5]);
                             u.setSenha(palavra[6]);
@@ -201,11 +202,12 @@ public class TelaLogin extends javax.swing.JFrame {
                             if(txt_Login.getText().equals(u.getLogin()) && txt_Senha.getText().equals(u.getSenha())){
                                 TelaInicial tl = new TelaInicial();
                                 tl.setVisible(true);
+                                    
                                 dispose();
                                 break;
                             }
                             else{
-                                JOptionPane.showMessageDialog(rootPane, "Acesso Negado ! Login ou Senha Invalidos");
+                                //JOptionPane.showMessageDialog(rootPane, "Acesso Negado ! Login ou Senha Invalidos");
                             }
                             
                             System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT

@@ -51,7 +51,6 @@ public class Cliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Classificação1 = new javax.swing.JLabel();
         txt_Nome = new javax.swing.JTextField();
-        txt_Data = new com.toedter.calendar.JDateChooser();
         b_Voltar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,6 +71,7 @@ public class Cliente extends javax.swing.JFrame {
         txt_Estado = new javax.swing.JTextField();
         Classificação6 = new javax.swing.JLabel();
         txt_Cep = new javax.swing.JFormattedTextField();
+        txt_Data = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,7 +112,7 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
-        b_Editar.setBackground(new java.awt.Color(204, 204, 0));
+        b_Editar.setBackground(new java.awt.Color(204, 153, 0));
         b_Editar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         b_Editar.setForeground(new java.awt.Color(255, 255, 255));
         b_Editar.setText("Editar");
@@ -133,7 +133,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel2.setText("CPF:");
 
         try {
-            txt_Fone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            txt_Fone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -157,6 +157,18 @@ public class Cliente extends javax.swing.JFrame {
         Classificação6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Classificação6.setForeground(new java.awt.Color(255, 255, 255));
         Classificação6.setText("CEP:");
+
+        try {
+            txt_Cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txt_Data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,14 +216,15 @@ public class Cliente extends javax.swing.JFrame {
                             .addComponent(Classificação1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Nome)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txt_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txt_Data, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_Cpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Fone, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_Nome))))
+                                .addComponent(txt_Fone, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,10 +250,10 @@ public class Cliente extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txt_Fone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Classificação1))
-                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Classificação1)
+                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_Endereço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Classificação2))
@@ -315,23 +328,25 @@ public class Cliente extends javax.swing.JFrame {
         String fone = txt_Fone.getText();
         //    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         //String data = sdf.format(txt_Data.getDateFormatString());
+        String data = txt_Data.getText();
 
-        File file = new File(en.getEnde()+"Usuarios\\"+nome+".txt");
+        File file = new File(en.getEnde()+"Clientes\\"+nome+".txt");
             try {
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
 
-                bw.write(nome);
-                bw.write(cpf);
-                bw.write(fone);
-                //bw.write(data);
+                bw.write(nome+" - ");
+                bw.write(cpf+" - ");
+                bw.write(fone+" - ");
+                bw.write(data);
 
-                dlm.addElement(nome+" - "+cpf+" - "+fone);
+                dlm.addElement(nome+" - "+cpf+" - "+data+" - "+fone);
                 l_Clientes.setModel(dlm);
 
                 txt_Nome.setText("");
                 txt_Cpf.setText("");
                 txt_Fone.setText("");
+                txt_Data.setText("");
 
                 bw.close();
                 fw.close();
@@ -397,7 +412,7 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txt_Cep;
     private javax.swing.JTextField txt_Cidade;
     private javax.swing.JFormattedTextField txt_Cpf;
-    private com.toedter.calendar.JDateChooser txt_Data;
+    private javax.swing.JFormattedTextField txt_Data;
     private javax.swing.JTextField txt_Endereço;
     private javax.swing.JTextField txt_Estado;
     private javax.swing.JFormattedTextField txt_Fone;

@@ -3,6 +3,8 @@ package Cadastro;
 import Fichas.Endereço;
 import java.io.*;
 import java.text.DateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 
@@ -27,9 +29,9 @@ public class Filme extends javax.swing.JFrame {
                         BufferedReader br = new BufferedReader(new FileReader(file));
                         while(br.ready()){
                             String linha = br.readLine();
-                            String[] palavra = linha.split(" - ");
+                            //String[] palavra = linha.split(" - ");
                             
-                            dlm.addElement(palavra[0]+" - "+palavra[1]+" - "+palavra[2]+" - "+palavra[3]);
+                            dlm.addElement(linha);
                             l_Filmes.setModel(dlm);
                             
                             System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT
@@ -40,8 +42,7 @@ public class Filme extends javax.swing.JFrame {
                         br.close();
                     }
                 }
-            }catch(Exception e){
-                e.printStackTrace();
+            }catch(IOException e){
             }
     }
 
@@ -60,7 +61,6 @@ public class Filme extends javax.swing.JFrame {
         txt_Ref = new javax.swing.JTextField();
         c_Genero = new javax.swing.JComboBox<>();
         c_Classi = new javax.swing.JComboBox<>();
-        txt_Data = new com.toedter.calendar.JDateChooser();
         b_Voltar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,7 +68,8 @@ public class Filme extends javax.swing.JFrame {
         b_Cadastrar = new javax.swing.JButton();
         b_Editar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_Qtd = new javax.swing.JSpinner();
+        txt_Qtd = new javax.swing.JTextField();
+        txt_Data = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,7 +138,7 @@ public class Filme extends javax.swing.JFrame {
             }
         });
 
-        b_Editar.setBackground(new java.awt.Color(204, 204, 0));
+        b_Editar.setBackground(new java.awt.Color(204, 153, 0));
         b_Editar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         b_Editar.setForeground(new java.awt.Color(255, 255, 255));
         b_Editar.setText("Editar");
@@ -152,7 +153,11 @@ public class Filme extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Qtd:");
 
-        txt_Qtd.setModel(new javax.swing.SpinnerNumberModel(0, null, 5, 1));
+        try {
+            txt_Data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,10 +165,10 @@ public class Filme extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap(32, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(b_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(b_Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +187,7 @@ public class Filme extends javax.swing.JFrame {
                                         .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txt_Qtd)))))
                         .addGap(29, 29, 29))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -196,14 +201,14 @@ public class Filme extends javax.swing.JFrame {
                                         .addGap(24, 24, 24)
                                         .addComponent(Classificação1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c_Classi, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(c_Classi, 0, 143, Short.MAX_VALUE)
+                                    .addComponent(txt_Data)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(b_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -230,10 +235,10 @@ public class Filme extends javax.swing.JFrame {
                             .addComponent(c_Classi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Classificação))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Classificação1)
                             .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b_Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,13 +280,13 @@ public class Filme extends javax.swing.JFrame {
         
         String nome = txt_Nome.getText();
         String ref = txt_Ref.getText();
-        String qtd = (String) (txt_Qtd.getValue());
+        String qtd = txt_Qtd.getText();
         String genero = (String) c_Genero.getSelectedItem();
         String classi = (String) c_Classi.getSelectedItem();
-            //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        //String data = sdf.format(txt_Data.getDateEditor());
-        String data = df.format(txt_Data.getDate());
-        
+        //    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //String data = sdf.format(txt_Data.getDate());
+        String data = txt_Data.getText();
+        System.out.println(data);
         
         File file = new File(en.getEnde()+"Filmes\\"+ref+".txt");
         try {
@@ -292,16 +297,18 @@ public class Filme extends javax.swing.JFrame {
                 bw.write(nome+" - ");
                 bw.write(genero+" - ");
                 bw.write(classi+" - ");
-                //bw.write(data+" - ");
+                bw.write(data+" - ");
                 bw.write(qtd);
                 
-                dlm.addElement(ref+nome+genero+classi+qtd);
+                dlm.addElement(ref+" - "+nome+" - "+genero+" - "+classi+" - "+data+" - "+qtd);
                 l_Filmes.setModel(dlm);
                 
                 txt_Nome.setText("");
                 txt_Ref.setText("");
+                txt_Qtd.setText("");
                 c_Genero.setSelectedItem("Selecione ...");
                 c_Classi.setSelectedItem("Selecione ...");
+                txt_Data.setText("");
                 
                 bw.close();
             fw.close();
@@ -314,37 +321,31 @@ public class Filme extends javax.swing.JFrame {
     }//GEN-LAST:event_b_CadastrarActionPerformed
 
     private void b_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_EditarActionPerformed
-        Endereço en = new Endereço();
+        String selec = l_Filmes.getSelectedValue();
         
-        // Le o arquivo
-        try{
-            File pastas = new File(en.getEnde()+"Filmes\\");
-            File[] files = pastas.listFiles();
-
-            for (int i = 0; i < files.length; i++) {
-                File file = files[i];
-
-                if (file.getPath().endsWith(".txt")) {  //PESQUISA O TXT DA MATRICULA
-                    String arq = file.getName();
-                    System.out.println(arq);
-
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    while(br.ready()){
-                        String linha = br.readLine();
-                        String[] palavra = linha.split(" - ");
-
-                        dlm.addElement(palavra[0]+palavra[1]+palavra[2]+palavra[3]);
-                        l_Filmes.setModel(dlm);
-
-                        System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT
-                    }
-                    br.close();
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader(selec))) {
+                while(br.ready()){
+                    String linha = br.readLine();
+                    
+                    String[] palavra = linha.split(" - ");
+                    
+                    txt_Nome.setText(palavra[1]);
+                    txt_Ref.setText(palavra[0]);
+                    txt_Qtd.setText(palavra[5]);
+                    txt_Data.setText(palavra[4]);
+                    
+                    
+                    // Imprime confirmacao
+                    System.out.println("Feito =D");
                 }
             }
-
-        }catch(Exception e){
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        int remove = l_Filmes.getSelectedIndex();
+        dlm.removeElement(l_Filmes);
 
     }//GEN-LAST:event_b_EditarActionPerformed
 
@@ -400,9 +401,9 @@ public class Filme extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> l_Filmes;
-    private com.toedter.calendar.JDateChooser txt_Data;
+    private javax.swing.JFormattedTextField txt_Data;
     private javax.swing.JTextField txt_Nome;
-    private javax.swing.JSpinner txt_Qtd;
+    private javax.swing.JTextField txt_Qtd;
     private javax.swing.JTextField txt_Ref;
     // End of variables declaration//GEN-END:variables
 }
