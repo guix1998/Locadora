@@ -218,6 +218,12 @@ public class TelaLogin extends javax.swing.JFrame {
                 }
             }catch(HeadlessException | IOException e){
             }
+        
+        /*
+        TelaInicial tl = new TelaInicial();
+        tl.setVisible(true);
+        dispose();
+        */
     }//GEN-LAST:event_b_logarActionPerformed
 
     private void b_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_SairActionPerformed

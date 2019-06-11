@@ -302,7 +302,7 @@ public class Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_VoltarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_b_VoltarActionPerformed
     DefaultListModel dlm = new DefaultListModel();
     private void b_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CadastrarActionPerformed
@@ -313,8 +313,8 @@ public class Cliente extends javax.swing.JFrame {
         String nome = txt_Nome.getText();
         String cpf = txt_Cpf.getText();
         String fone = txt_Fone.getText();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String data = sdf.format(txt_Data.getDateFormatString());
+        //    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //String data = sdf.format(txt_Data.getDateFormatString());
 
         File file = new File(en.getEnde()+"Usuarios\\"+nome+".txt");
             try {
@@ -324,7 +324,7 @@ public class Cliente extends javax.swing.JFrame {
                 bw.write(nome);
                 bw.write(cpf);
                 bw.write(fone);
-                bw.write(data);
+                //bw.write(data);
 
                 dlm.addElement(nome+" - "+cpf+" - "+fone);
                 l_Clientes.setModel(dlm);

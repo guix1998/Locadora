@@ -152,6 +152,8 @@ public class Filme extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Qtd:");
 
+        txt_Qtd.setModel(new javax.swing.SpinnerNumberModel(0, null, 5, 1));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -260,11 +262,12 @@ public class Filme extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-        DateFormat df = DateFormat.getDateInstance();
+        
     private void b_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_VoltarActionPerformed
         dispose();
     }//GEN-LAST:event_b_VoltarActionPerformed
         DefaultListModel dlm = new DefaultListModel();
+        DateFormat df = DateFormat.getDateInstance();
     private void b_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_CadastrarActionPerformed
         // salvar e add na lista o filme
         
@@ -272,7 +275,7 @@ public class Filme extends javax.swing.JFrame {
         
         String nome = txt_Nome.getText();
         String ref = txt_Ref.getText();
-        String qtd = txt_Qtd.getToolTipText();
+        String qtd = (String) (txt_Qtd.getValue());
         String genero = (String) c_Genero.getSelectedItem();
         String classi = (String) c_Classi.getSelectedItem();
             //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -289,10 +292,10 @@ public class Filme extends javax.swing.JFrame {
                 bw.write(nome+" - ");
                 bw.write(genero+" - ");
                 bw.write(classi+" - ");
-                bw.write(data+" - ");
+                //bw.write(data+" - ");
                 bw.write(qtd);
                 
-                dlm.addElement(ref+nome+genero+classi+data+qtd);
+                dlm.addElement(ref+nome+genero+classi+qtd);
                 l_Filmes.setModel(dlm);
                 
                 txt_Nome.setText("");

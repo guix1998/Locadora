@@ -317,8 +317,8 @@ public class Usuario extends javax.swing.JFrame {
         String cpf = txt_Cpf.getText();
         String fone = txt_Fone.getText();
         String genero = (String) c_Genero.getSelectedItem();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String data = sdf.format(txt_Data.getDateFormatString());
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //String data = sdf.format(txt_Data.getDateFormatString());
         String funcao = (String) c_Funcao.getSelectedItem();
         String login = txt_Login.getText();
         String senha = txt_Senha.getText();
@@ -335,7 +335,7 @@ public class Usuario extends javax.swing.JFrame {
                 bw.write(funcao+" - ");
                 bw.write(login+" - ");
                 bw.write(senha);
-                bw.write(data);
+                //bw.write(data);
 
                 dlm.addElement(funcao+" - "+nome+" ("+login+")");
                 l_Usuarios.setModel(dlm);
