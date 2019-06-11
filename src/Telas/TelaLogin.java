@@ -1,10 +1,14 @@
 package Telas;
 
+import Fichas.LoginUsuario;
 import Fichas.Endereço;
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 public class TelaLogin extends javax.swing.JFrame {
@@ -170,12 +174,11 @@ public class TelaLogin extends javax.swing.JFrame {
     private void b_logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_logarActionPerformed
         
         Endereço en = new Endereço();
-        String login;
-        String senha;
+        LoginUsuario u = new LoginUsuario();
         
         // Le o arquivo
         try{
-            File pastas = new File(en.getEnde()+"Clientes\\");
+            File pastas = new File(en.getEnde()+"Usuarios\\");
                 File[] files = pastas.listFiles();
 
                 for (int i = 0; i < files.length; i++) {
@@ -190,7 +193,20 @@ public class TelaLogin extends javax.swing.JFrame {
                             String linha = br.readLine();
                             String[] palavra = linha.split(" - ");
                             
+                            u.setNome(palavra[0]);
+                            u.setFuncao(palavra[4]);
+                            u.setLogin(palavra[5]);
+                            u.setSenha(palavra[6]);
                             
+                            if(txt_Login.getText().equals(u.getLogin()) && txt_Senha.getText().equals(u.getSenha())){
+                                TelaInicial tl = new TelaInicial();
+                                tl.setVisible(true);
+                                dispose();
+                                break;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(rootPane, "Acesso Negado ! Login ou Senha Invalidos");
+                            }
                             
                             System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT
                             
@@ -200,14 +216,8 @@ public class TelaLogin extends javax.swing.JFrame {
                         br.close();
                     }
                 }
-            }catch(Exception e){
-                e.printStackTrace();
+            }catch(HeadlessException | IOException e){
             }
-        
-        
-        TelaInicial tl = new TelaInicial();
-        tl.setVisible(true);
-        dispose();
     }//GEN-LAST:event_b_logarActionPerformed
 
     private void b_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_SairActionPerformed

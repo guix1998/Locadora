@@ -4,10 +4,16 @@ import Cadastro.Cliente;
 import Cadastro.Filme;
 import Cadastro.Usuario;
 import Locação.Locacao;
+import Fichas.LoginUsuario;
 
 public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         initComponents();
+        
+        LoginUsuario lu = new LoginUsuario();
+        
+        Nome.setText(lu.getNome());
+        Funcao.setText(lu.getFuncao());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -19,6 +25,9 @@ public class TelaInicial extends javax.swing.JFrame {
         b_Locação = new javax.swing.JToggleButton();
         b_Locação1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Nome = new javax.swing.JLabel();
+        Funcao = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         b_Filme = new javax.swing.JRadioButtonMenuItem();
@@ -82,7 +91,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(b_Locação, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(b_Locação1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(b_Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -92,24 +101,56 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Bem Vindo");
+
+        Nome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Nome.setForeground(new java.awt.Color(255, 255, 255));
+        Nome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Nome.setText("usuario");
+
+        Funcao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Funcao.setForeground(new java.awt.Color(255, 255, 255));
+        Funcao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Funcao.setText("função");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Funcao, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Funcao)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, 0)
+                        .addComponent(Nome)))
+                .addContainerGap())
         );
 
         jMenu1.setText("Cadastro");
@@ -237,12 +278,15 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Funcao;
+    private javax.swing.JLabel Nome;
     private javax.swing.JCheckBoxMenuItem b_Cliente;
     private javax.swing.JToggleButton b_Fechar;
     private javax.swing.JRadioButtonMenuItem b_Filme;
     private javax.swing.JToggleButton b_Locação;
     private javax.swing.JToggleButton b_Locação1;
     private javax.swing.JCheckBoxMenuItem b_Usuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
