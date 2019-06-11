@@ -71,7 +71,7 @@ public class Cliente extends javax.swing.JFrame {
         txt_Data = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         l_Clientes = new javax.swing.JList<>();
-        jTextField1 = new javax.swing.JTextField();
+        txt_Busca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -233,7 +233,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_Busca, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +286,7 @@ public class Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -422,7 +422,50 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*
+    public void ListaPesquisa(){
+        
+        try{
+            Endereço en = new Endereço();
+        
+        // Le o arquivo
+        try{
+            File pastas = new File(en.getEnde()+"Clientes\\");
+                File[] files = pastas.listFiles();
 
+                for (int i = 0; i < files.length; i++) {
+                    File file = files[i];
+
+                    if (file.getPath().endsWith(".txt")) {  //PESQUISA O TXT DA MATRICULA
+                        String arq = file.getName();
+                        char pasta[] = arq.toCharArray();
+                        System.out.println(arq);
+
+                            
+                        
+                            int a =0;
+                            while(txt_Busca.getText().equals(pasta[a])){
+                                l_Clientes.addElement(txt_Busca.getSelectedText())
+                                a++;
+                            }
+                            
+                            
+                            
+                    }
+                }
+                // Imprime confirmacao
+                System.out.println("Feito =D");
+            }catch(IOException e){
+            }
+            
+        }catch(IOException e){
+            
+        }
+        
+    }
+    */
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Classificação1;
     private javax.swing.JLabel Classificação2;
@@ -440,9 +483,9 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> l_Clientes;
     private javax.swing.JTextField txt_Bairro;
+    private javax.swing.JTextField txt_Busca;
     private javax.swing.JFormattedTextField txt_Cep;
     private javax.swing.JTextField txt_Cidade;
     private javax.swing.JFormattedTextField txt_Cpf;
@@ -453,3 +496,4 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Nome;
     // End of variables declaration//GEN-END:variables
 }
+
