@@ -4,6 +4,7 @@ import Fichas.Alugar;
 import Fichas.Endereço;
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.Date;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.DefaultListModel;
@@ -11,6 +12,9 @@ import javax.swing.DefaultListModel;
 public class Locacao extends javax.swing.JFrame {
     public Locacao() {
         initComponents();
+        
+        Date data = new Date();
+        txt_DataL.setDate(data);
         
         Endereço en = new Endereço();
         
@@ -57,8 +61,8 @@ public class Locacao extends javax.swing.JFrame {
         Classificação = new javax.swing.JLabel();
         Classificação1 = new javax.swing.JLabel();
         txt_Cliente = new javax.swing.JTextField();
-        txt_Ref = new javax.swing.JTextField();
-        txt_Data = new com.toedter.calendar.JDateChooser();
+        txt_Classi = new javax.swing.JTextField();
+        txt_DataL = new com.toedter.calendar.JDateChooser();
         b_Voltar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -189,12 +193,12 @@ public class Locacao extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Classi, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txt_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(b_Busca))
-                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_DataL, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -216,11 +220,11 @@ public class Locacao extends javax.swing.JFrame {
                             .addComponent(b_Busca))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Classi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Classificação))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_DataL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Classificação1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,7 +264,8 @@ public class Locacao extends javax.swing.JFrame {
     }//GEN-LAST:event_b_VoltarActionPerformed
 
     private void b_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_LimparActionPerformed
-        
+        int remove = l_Alugar.getSelectionMode();
+        dlm2.remove(remove);
     }//GEN-LAST:event_b_LimparActionPerformed
 
     private void b_ConcluuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ConcluuirActionPerformed
@@ -290,9 +295,8 @@ public class Locacao extends javax.swing.JFrame {
 
                     if (file.getPath().endsWith(".txt")) {  //PESQUISA O TXT DA MATRICULA
                         String arq = file.getName();
-                        System.out.println(arq);
                         
-                        if(arq == buscaNome){
+                        if(arq == buscaNome+".txt"){
                         
                             BufferedReader br = new BufferedReader(new FileReader(file));
                             while(br.ready()){
@@ -302,8 +306,9 @@ public class Locacao extends javax.swing.JFrame {
                                 Alugar a = new Alugar();
                                 a.setNome(palavra[0]);
                                 a.setData(palavra[3]);
-
-                                System.out.println(linha);   //PRINT NA TELA OS DADOS DO .TXT
+                                
+                                System.out.println(palavra[0]);
+                                System.out.println(palavra[3]);
 
                                 // Imprime confirmacao
                                 System.out.println("Feito =D");
@@ -369,8 +374,8 @@ public class Locacao extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JList<String> l_Alugar;
     private javax.swing.JList<String> l_FixaFilmes;
+    private javax.swing.JTextField txt_Classi;
     private javax.swing.JTextField txt_Cliente;
-    private com.toedter.calendar.JDateChooser txt_Data;
-    private javax.swing.JTextField txt_Ref;
+    private com.toedter.calendar.JDateChooser txt_DataL;
     // End of variables declaration//GEN-END:variables
 }

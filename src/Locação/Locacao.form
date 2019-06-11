@@ -99,13 +99,13 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_Ref" min="-2" pref="137" max="-2" attributes="0"/>
+                              <Component id="txt_Classi" min="-2" pref="137" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="txt_Cliente" min="-2" pref="137" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="b_Busca" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txt_Data" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                              <Component id="txt_DataL" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -135,12 +135,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_Ref" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_Classi" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Classificação" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_Data" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_DataL" min="-2" max="-2" attributes="0"/>
                               <Component id="Classificação1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -198,9 +198,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Cliente">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_Ref">
+        <Component class="javax.swing.JTextField" name="txt_Classi">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="txt_Data">
+        <Component class="com.toedter.calendar.JDateChooser" name="txt_DataL">
         </Component>
         <Component class="javax.swing.JButton" name="b_Voltar">
           <Properties>

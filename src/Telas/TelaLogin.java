@@ -83,13 +83,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Login:");
 
-        txt_Login.setBackground(new java.awt.Color(153, 153, 153));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha:");
-
-        txt_Senha.setBackground(new java.awt.Color(153, 153, 153));
 
         b_View.setText("Visualizar");
         b_View.addActionListener(new java.awt.event.ActionListener() {
