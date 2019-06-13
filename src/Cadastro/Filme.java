@@ -331,6 +331,8 @@ public class Filme extends javax.swing.JFrame {
         txt_Nome.setText(palavra[1]);
         txt_Ref.setText(palavra[0]);
         txt_Qtd.setText(palavra[5]);
+        c_Genero.setSelectedItem(palavra[2]);
+        c_Classi.setSelectedItem(palavra[3]);
         txt_Data.setText(palavra[4]);
         
         int remove = l_Filmes.getSelectedIndex();
