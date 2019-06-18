@@ -4,9 +4,11 @@ import Fichas.Alugar;
 import Fichas.Endereço;
 import Pagamento.TipoPagamento;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.util.Date;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultListModel;
@@ -315,9 +317,38 @@ public class Locacao extends javax.swing.JFrame {
         }
     }
     private void b_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_AddActionPerformed
-    String selec = l_FixaFilmes.getSelectedValue();
+    Endereço en = new Endereço();
+        
+        String selec = l_FixaFilmes.getSelectedValue();
         String[] palavra = selec.split(" - ");
 
+        String nome = txt_Cliente.getText();
+        String dataL = txt_DataL.getText();
+        File file1 = new File(en.getEnde()+"Locacao\\"+nome+".txt");
+            try {
+                FileWriter fw = new FileWriter(file1);
+                    BufferedWriter bw = new BufferedWriter(fw);
+
+                    bw.write(nome+" - ");
+                    bw.write(dataL+" -> ");
+
+                    String filme = palavra[1];
+                    String classfi = palavra[3];
+                    
+                    bw.write(" /"+filme+" ("+classfi+")");
+                    
+                    bw.write(palavra[1]);
+                    
+                    bw.close();
+                fw.close();
+
+            } catch (IOException ex) {
+            }
+        
+        
+        
+        
+        
         int cla = Integer.parseInt(palavra[3]);
         int idade = Integer.parseInt(txt_Classi.getText());
         
@@ -325,6 +356,40 @@ public class Locacao extends javax.swing.JFrame {
             dlm2.addElement(l_FixaFilmes.getSelectedValue());
             l_Alugar.setModel(dlm2);
 
+            
+            
+            // Le o arquivo
+            try{
+                File pastas = new File(en.getEnde()+"Locacao\\");
+                    File[] files = pastas.listFiles();
+
+                    for (int i = 0; i < files.length; i++) {
+                        File file2 = files[i];
+
+                        if (file2.getPath().endsWith(".txt")) {  //PESQUISA O TXT DA MATRICULA
+                            String arq = file2.getName();
+
+                            //pequisa o nome do arq de locação
+                            if((nome+".txt").equals(arq)){
+                                BufferedReader br = new BufferedReader(new FileReader(file2));
+                                while(br.ready()){
+                                    String linha = br.readLine();
+                                    String[] palavra2 = linha.split(" - ");
+
+
+                                    
+                                    // Imprime confirmacao
+                                    System.out.println("busca Feita =D");
+                                }
+                                br.close();
+                            }
+                        }
+                    }
+            }catch(IOException e){
+            }
+            
+            
+            
             int remover=l_FixaFilmes.getSelectedIndex();
             dlm.remove(remover);
         }else{
@@ -337,17 +402,14 @@ public class Locacao extends javax.swing.JFrame {
                 dlm2.addElement(l_FixaFilmes.getSelectedValue());
                 l_Alugar.setModel(dlm2);
 
-            int remover=l_FixaFilmes.getSelectedIndex();
-            dlm.remove(remover);
+                int remover=l_FixaFilmes.getSelectedIndex();
+                dlm.remove(remover);
             }
         }
-        
-        
     }//GEN-LAST:event_b_AddActionPerformed
     
     private void b_BuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_BuscaActionPerformed
         Endereço en = new Endereço();
-        
         String buscaNome = txt_Cliente.getText();
         
         // Le o arquivo
@@ -383,12 +445,12 @@ public class Locacao extends javax.swing.JFrame {
                                 int m1 = Integer.parseInt(AnoL[1]);
                                 int a1 = Integer.parseInt(AnoL[2]);
                                 
-                                int DiaH = (d1-d2);
-                                int MesH = (m1-m2);
-                                int AnoH = (a1-a2);
-                                int DATA = AnoH;
-                                
-                                System.out.println(DiaH+"/"+MesH+"/"+AnoH);
+                                    int DiaH = (d1-d2);
+                                    int MesH = (m1-m2);
+                                    int AnoH = (a1-a2);
+                                    int DATA = AnoH;
+
+                                    System.out.println(DiaH+"/"+MesH+"/"+AnoH);
                                 
                                 if(MesH < 0){
                                     DATA = AnoH-1;
@@ -403,7 +465,6 @@ public class Locacao extends javax.swing.JFrame {
                                     txt_Classi.setText(Integer.toString(DATA));
                                 }
                                 
-                                
                                 // Imprime confirmacao
                                 System.out.println("busca Feita =D");
                             }
@@ -413,7 +474,6 @@ public class Locacao extends javax.swing.JFrame {
                 }
             }catch(IOException e){
             }
-
     }//GEN-LAST:event_b_BuscaActionPerformed
 
     /**

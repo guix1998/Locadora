@@ -4,6 +4,14 @@ public class Alugar {
     public String nome;
     public String data;
     public String filmes;
+    public int qtd=0;
+
+    public int getQtd() {
+        return qtd;
+    }
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
     public String valor;
     
     
